@@ -12,6 +12,17 @@ public class TimeRequest {
     private Long userId;
     //    FK
     private Long vendorId;
+
+    private Long transactionId;
+
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
+    }
+
     @Column(nullable = false)
     private String status;
 
