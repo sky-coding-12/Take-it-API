@@ -3,6 +3,7 @@ package com.example.final_take_it.controller;
 import com.example.final_take_it.model.Transaction;
 import com.example.final_take_it.repositiory.transactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class transactionController {
 
     @GetMapping("getAllTransaction")
     public List<Transaction> getAllTransaction(){
-        return transactionRepo.findAll();
+        return transactionRepo.findAll(Sort.by("id").descending());
     }
 
     @GetMapping("getTransaction")
