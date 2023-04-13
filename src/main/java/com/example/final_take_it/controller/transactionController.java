@@ -19,7 +19,7 @@ public class transactionController {
 
     @GetMapping("getAllTransaction")
     public List<Transaction> getAllTransaction(){
-        return transactionRepo.findAll(Sort.by("id").descending());
+        return transactionRepo.findAll(Sort.by("transactionId").descending());
     }
 
     @GetMapping("getTransaction")
