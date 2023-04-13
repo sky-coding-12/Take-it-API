@@ -8,6 +8,7 @@ import com.example.final_take_it.repositiory.vendorRepo;
 import com.example.final_take_it.repositiory.transactionRepo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -69,14 +70,14 @@ public class userController {
 
     @GetMapping("getAllTransactions")
     public List<Transaction> getAllTransactions(@RequestParam Long phoneNumber){
-        List<Transaction> list = transactionRepo.findAll();
+        List<Transaction> list = transactionRepo.findAll(Sort.by("transactionId").descending());
         List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getUserId(), phoneNumber)).collect(Collectors.toList());
         return collect;
     }
 
     @GetMapping("getParticularVendorTransactions")
     public List<Transaction> getParticularVendorTransactions(@RequestParam Long userPhone, Long vendorPhone){
-        List<Transaction> list = transactionRepo.findAll();
+        List<Transaction> list = transactionRepo.findAll(Sort.by("transactionId").descending());
         List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getUserId(), userPhone)).collect(Collectors.toList());
         System.out.println(collect);
         List<Transaction> temp = list.stream().filter(t -> Objects.equals(t.getVendorId(), vendorPhone)).collect(Collectors.toList());
