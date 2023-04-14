@@ -47,8 +47,8 @@ public class transactionController {
         List<Transaction> transactions1 = transactions.stream().filter(t -> Objects.equals(userPhone, t.getUserId())).collect(Collectors.toList());
         List<Transaction> transactions2 = transactions.stream().filter(t -> Objects.equals(vendorPhone, t.getVendorId())).collect(Collectors.toList());
         long totalCredit = 0, totalDebit = 0;
-        for (Transaction transaction : transactions2) if (Objects.equals(transaction.getCreditDebitStatus(), "credit")) totalCredit += transaction.getAmount();
-        for (Transaction transaction : transactions2) if (Objects.equals(transaction.getCreditDebitStatus(), "debit")) totalDebit += transaction.getAmount();
+        for (Transaction transaction : transactions1) if (Objects.equals(transaction.getCreditDebitStatus(), "credit")) totalCredit += transaction.getAmount();
+        for (Transaction transaction : transactions1) if (Objects.equals(transaction.getCreditDebitStatus(), "debit")) totalDebit += transaction.getAmount();
         List<Long> ans = new ArrayList<>();
         ans.add(totalCredit);
         ans.add(totalDebit);
