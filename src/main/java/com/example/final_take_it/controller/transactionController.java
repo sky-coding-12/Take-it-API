@@ -59,4 +59,9 @@ public class transactionController {
     public Transaction saveTransaction(@RequestBody Transaction transaction){
         return transactionRepo.save(transaction);
     }
+
+    @PutMapping("updateTransaction")
+    public Transaction updateTransaction(@RequestBody Transaction transaction){
+        return transactionRepo.save(transaction);
+    }
 }
