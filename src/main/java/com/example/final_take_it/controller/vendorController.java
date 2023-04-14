@@ -1,10 +1,13 @@
 package com.example.final_take_it.controller;
 
+import com.example.final_take_it.model.Transaction;
 import com.example.final_take_it.model.Vendor;
 import com.example.final_take_it.repositiory.vendorRepo;
 import com.example.final_take_it.repositiory.userRepo;
+import com.example.final_take_it.repositiory.transactionRepo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,8 @@ public class vendorController {
     private vendorRepo vendorRepo;
     @Autowired
     private userRepo userRepo;
+    @Autowired
+    private transactionRepo transactionRepo;
 
     @GetMapping("getAllVendor")
     public List<Vendor> getAllVendor(){
@@ -60,5 +65,12 @@ public class vendorController {
     public String deleteAllVendor(){
         vendorRepo.deleteAll();
         return "All Vendor Saaf!!";
+    }
+
+    @GetMapping("getAllTransactions")
+    public List<Transaction> getAllTransactions(@RequestParam Long phoneNumber){
+        List<Transaction> list = transactionRepo.findAll(Sort.by("transactionId").descending());
+        List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getVendorId(), phoneNumber)).collect(Collectors.toList());
+        return collect;
     }
 }
