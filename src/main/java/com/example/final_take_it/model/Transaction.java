@@ -15,6 +15,17 @@ public class Transaction {
     @Column(nullable = false)
     private String status;
 
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    @Column(nullable = false)
+    private String paymentStatus;
+
     @Column(nullable = false)
     private String creditDebitStatus;
 
