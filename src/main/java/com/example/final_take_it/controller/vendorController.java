@@ -1,6 +1,7 @@
 package com.example.final_take_it.controller;
 
 import com.example.final_take_it.model.Transaction;
+import com.example.final_take_it.model.User;
 import com.example.final_take_it.model.Vendor;
 import com.example.final_take_it.repositiory.vendorRepo;
 import com.example.final_take_it.repositiory.userRepo;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -72,5 +74,24 @@ public class vendorController {
         List<Transaction> list = transactionRepo.findAll(Sort.by("transactionId").descending());
         List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getVendorId(), phoneNumber)).collect(Collectors.toList());
         return collect;
+    }
+
+    @GetMapping("getCustomerOnUserCredit")
+    public List<User> getCustomerOnUserCredit(@RequestParam Long phoneNumber){
+        List<Transaction> list = transactionRepo.findAll();
+        List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getVendorId(), phoneNumber)).collect(Collectors.toList());
+        List<Long> userId = new ArrayList<>();
+        for (Transaction transaction : collect) {
+            if (!userId.contains(transaction.getUserId())) userId.add(transaction.getUserId());
+        }
+
+        List<User> ans = new ArrayList<>();
+        List<User> users = userRepo.findAll();
+        for (Long id : userId) {
+            for (User user : users){
+                if (Objects.equals(user.getPhoneNumber(), id)) ans.add(user);
+            }
+        }
+        return ans;
     }
 }
