@@ -80,7 +80,7 @@ public class userController {
         List<Transaction> list = transactionRepo.findAll(Sort.by("transactionId").descending());
         List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getUserId(), userPhone)).collect(Collectors.toList());
         System.out.println(collect);
-        List<Transaction> temp = list.stream().filter(t -> Objects.equals(t.getVendorId(), vendorPhone)).collect(Collectors.toList());
+        List<Transaction> temp = collect.stream().filter(t -> Objects.equals(t.getVendorId(), vendorPhone)).collect(Collectors.toList());
         return temp;
     }
 
