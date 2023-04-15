@@ -41,6 +41,10 @@ public class TimeRequest {
     @JsonFormat(pattern = "mm/dd/yyyy",shape = JsonFormat.Shape.STRING)
     private String newDate;
 
+    @Column(nullable = false)
+    @JsonFormat(pattern = "mm/dd/yyyy",shape = JsonFormat.Shape.STRING)
+    private String dueDate;
+
     public String getNewDate() {
         return newDate;
     }
