@@ -17,7 +17,7 @@ public class LoanOffer {
     private Long loanAmount;
 
     @Column(nullable = false)
-    private double loanInterest;
+    private Long loanInterest;
 
     @Column(nullable = false)
     private String status;
@@ -57,11 +57,11 @@ public class LoanOffer {
         this.loanAmount = loanAmount;
     }
 
-    public double getLoanInterest() {
+    public Long getLoanInterest() {
         return loanInterest;
     }
 
-    public void setLoanInterest(double loanInterest) {
+    public void setLoanInterest(Long loanInterest) {
         this.loanInterest = loanInterest;
     }
 
