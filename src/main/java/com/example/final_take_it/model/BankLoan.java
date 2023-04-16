@@ -39,7 +39,7 @@ public class BankLoan {
 
     //    FK
     @Column(nullable = false)
-    private double loanInterest;
+    private Long loanInterest;
 
     @Column(nullable = false)
     private Long duration;
@@ -63,11 +63,11 @@ public class BankLoan {
         this.vendorId = vendorId;
     }
 
-    public double getInterestRate() {
+    public Long getInterestRate() {
         return loanInterest;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(Long interestRate) {
         loanInterest = interestRate;
     }
 
