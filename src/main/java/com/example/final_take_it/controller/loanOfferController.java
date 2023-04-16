@@ -21,6 +21,11 @@ public class loanOfferController {
         return loanOfferRepo.findAll(Sort.by("loanOfferId").descending());
     }
 
+    @PutMapping("updateLoanOffer")
+    public LoanOffer updateLoanOffer(@RequestBody LoanOffer loanOffer){
+        return loanOfferRepo.save(loanOffer);
+    }
+
     @PostMapping("saveLoanOffer")
     public LoanOffer saveLoanOffer(@RequestBody LoanOffer loanOffer){
         return loanOfferRepo.save(loanOffer);
@@ -38,6 +43,13 @@ public class loanOfferController {
     public List<LoanOffer> getLoanOfferByBank(@RequestParam Long bankPhone){
         List<LoanOffer> loanOffers = getAllNoticeOffer();
         List<LoanOffer> loanByBank = loanOffers.stream().filter(u -> Objects.equals(u.getBankId(), bankPhone)).collect(Collectors.toList());
+        return loanByBank;
+    }
+
+    @GetMapping("getLoanOfferById")
+    public List<LoanOffer> getLoanOfferById(@RequestParam Long id){
+        List<LoanOffer> loanOffers = getAllNoticeOffer();
+        List<LoanOffer> loanByBank = loanOffers.stream().filter(u -> Objects.equals(u.getLoanOfferId(), id)).collect(Collectors.toList());
         return loanByBank;
     }
 }

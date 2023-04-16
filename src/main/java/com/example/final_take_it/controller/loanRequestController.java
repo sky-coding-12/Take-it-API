@@ -28,6 +28,11 @@ public class loanRequestController {
         return loanRequestRepo.save(loanRequest);
     }
 
+    @PutMapping("updateLoanRequest")
+    public LoanRequest updateLoanRequest(@RequestBody LoanRequest loanRequest){
+        return loanRequestRepo.save(loanRequest);
+    }
+
     @GetMapping("getLoanRequestByVendor")
     public List<LoanRequest> getLoanRequestByVendor(@RequestParam Long bankPhone, Long vendorPhone){
         List<LoanRequest> loanOffers = getAllNoticeRequest();
@@ -40,6 +45,13 @@ public class loanRequestController {
     public List<LoanRequest> getLoanRequestByBank(@RequestParam Long bankPhone){
         List<LoanRequest> loanOffers = getAllNoticeRequest();
         List<LoanRequest> loanByBank = loanOffers.stream().filter(u -> Objects.equals(u.getBankId(), bankPhone)).collect(Collectors.toList());
+        return loanByBank;
+    }
+
+    @GetMapping("getLoanRequestById")
+    public List<LoanRequest> getLoanRequestById(@RequestParam Long id){
+        List<LoanRequest> loanOffers = getAllNoticeRequest();
+        List<LoanRequest> loanByBank = loanOffers.stream().filter(u -> Objects.equals(u.getLoanRequestId(), id)).collect(Collectors.toList());
         return loanByBank;
     }
 }
