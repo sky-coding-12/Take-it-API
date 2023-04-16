@@ -96,7 +96,7 @@ public class vendorController {
     }
 
     @GetMapping("getCustomerCount")
-    public Long getCustomerCount(@RequestParam Long phoneNumber){
+    public List<Long> getCustomerCount(@RequestParam Long phoneNumber){
         List<Transaction> list = transactionRepo.findAll();
         List<Transaction> collect = list.stream().filter(t -> Objects.equals(t.getVendorId(), phoneNumber)).collect(Collectors.toList());
         List<Long> userId = new ArrayList<>();
@@ -104,13 +104,15 @@ public class vendorController {
             if (!userId.contains(transaction.getUserId())) userId.add(transaction.getUserId());
         }
 
-        List<User> ans = new ArrayList<>();
+        List<User> temp = new ArrayList<>();
+        List<Long> ans = new ArrayList<>();
         List<User> users = userRepo.findAll();
         for (Long id : userId) {
             for (User user : users){
-                if (Objects.equals(user.getPhoneNumber(), id)) ans.add(user);
+                if (Objects.equals(user.getPhoneNumber(), id)) temp.add(user);
             }
         }
-        return (long) ans.size();
+        ans.add((long) temp.size());
+        return ans;
     }
 }
