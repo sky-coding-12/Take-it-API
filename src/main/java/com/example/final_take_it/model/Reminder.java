@@ -13,6 +13,17 @@ public class Reminder {
     //    FK
     private Long vendorId;
 
+    @Column(nullable = false)
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @JsonFormat(pattern= "MM-dd-yyyy",shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
     private String sendTime;
