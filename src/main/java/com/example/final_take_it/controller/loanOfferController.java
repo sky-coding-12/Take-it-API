@@ -33,4 +33,11 @@ public class loanOfferController {
         List<LoanOffer> loanByVendor = loanByBank.stream().filter(u -> Objects.equals(u.getVendorId(), vendorPhone)).collect(Collectors.toList());
         return loanByVendor;
     }
+
+    @GetMapping("getLoanOfferByBank")
+    public List<LoanOffer> getLoanOfferByBank(@RequestParam Long bankPhone){
+        List<LoanOffer> loanOffers = getAllNoticeOffer();
+        List<LoanOffer> loanByBank = loanOffers.stream().filter(u -> Objects.equals(u.getBankId(), bankPhone)).collect(Collectors.toList());
+        return loanByBank;
+    }
 }
