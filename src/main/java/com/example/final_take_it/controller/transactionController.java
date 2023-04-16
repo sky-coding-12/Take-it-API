@@ -41,6 +41,14 @@ public class transactionController {
         return ans;
     }
 
+    @GetMapping("getCustomerCount")
+    public Long getCustomerCount(@RequestParam Long userPhone, Long vendorPhone) {
+        List<Transaction> transactions = getAllTransaction();
+        List<Transaction> transactions1 = transactions.stream().filter(t -> Objects.equals(vendorPhone, t.getVendorId())).collect(Collectors.toList());
+        List<Transaction> transactions2 = transactions1.stream().filter(t -> Objects.equals(userPhone, t.getUserId())).collect(Collectors.toList());
+        return (long) transactions2.size();
+    }
+
     @GetMapping("getUserCreditDebitDemo")
     public List<Long> getUserCreditDebitDemo(@RequestParam Long userPhone, Long vendorPhone) {
         List<Transaction> transactions = getAllTransaction();
