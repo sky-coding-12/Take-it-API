@@ -9,17 +9,43 @@ public class BankLoan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bankLoanId;
     //    FK
-    private Long bankid;
+    private Long bankId;
     //    FK
     private Long vendorId;
+
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    public Long getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(Long loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
     //    FK
-    private Long emiId;
     @Column(nullable = false)
     private double InterestRate;
 
-    @JsonFormat(pattern = "MM-dd-yyyy",shape = JsonFormat.Shape.STRING)
     @Column(nullable = false)
-    private String dueDate;
+    private Long duration;
+
+    @Column(nullable = false)
+    private Long loanAmount;
 
     public Long getBankLoanId() {
         return bankLoanId;
@@ -27,14 +53,6 @@ public class BankLoan {
 
     public void setBankLoanId(Long bankLoanId) {
         this.bankLoanId = bankLoanId;
-    }
-
-    public Long getBankid() {
-        return bankid;
-    }
-
-    public void setBankid(Long bankid) {
-        this.bankid = bankid;
     }
 
     public Long getVendorId() {
@@ -45,14 +63,6 @@ public class BankLoan {
         this.vendorId = vendorId;
     }
 
-    public Long getEmiId() {
-        return emiId;
-    }
-
-    public void setEmiId(Long emiId) {
-        this.emiId = emiId;
-    }
-
     public double getInterestRate() {
         return InterestRate;
     }
@@ -61,11 +71,4 @@ public class BankLoan {
         InterestRate = interestRate;
     }
 
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
 }

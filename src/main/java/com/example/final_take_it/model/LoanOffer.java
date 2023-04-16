@@ -3,14 +3,16 @@ package com.example.final_take_it.model;
 import jakarta.persistence.*;
 
 @Entity
-public class LoanRequest {
+public class LoanOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long loanRequestId;
+    private Long loanOfferId;
+
     //    FK
     private Long bankId;
     //    FK
     private Long vendorId;
+
     @Column(nullable = false)
     private Long loanAmount;
 
@@ -23,20 +25,12 @@ public class LoanRequest {
     @Column(nullable = false)
     private Long duration;
 
-    public Long getDuration() {
-        return duration;
+    public Long getLoanOfferId() {
+        return loanOfferId;
     }
 
-    public void setDuration(Long duration) {
-        this.duration = duration;
-    }
-
-    public Long getLoanRequestId() {
-        return loanRequestId;
-    }
-
-    public void setLoanRequestId(Long loanRequestId) {
-        this.loanRequestId = loanRequestId;
+    public void setLoanOfferId(Long loanOfferId) {
+        this.loanOfferId = loanOfferId;
     }
 
     public Long getBankId() {
@@ -77,5 +71,13 @@ public class LoanRequest {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 }

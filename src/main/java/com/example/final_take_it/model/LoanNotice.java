@@ -10,7 +10,16 @@ public class LoanNotice {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long loanNoticeId;
     //    FK
-    private Long userId;
+    private Long bankId;
+
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
+    }
+
     //    FK
     private Long vendorId;
     @JsonFormat(pattern = "MM-dd-yyyy", shape = JsonFormat.Shape.STRING)
@@ -23,14 +32,6 @@ public class LoanNotice {
 
     public void setLoanNoticeId(Long loanNoticeId) {
         this.loanNoticeId = loanNoticeId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Long getVendorId() {
