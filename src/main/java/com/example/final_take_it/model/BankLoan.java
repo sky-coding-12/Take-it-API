@@ -39,7 +39,7 @@ public class BankLoan {
 
     //    FK
     @Column(nullable = false)
-    private double InterestRate;
+    private double loanInterest;
 
     @Column(nullable = false)
     private Long duration;
@@ -64,11 +64,11 @@ public class BankLoan {
     }
 
     public double getInterestRate() {
-        return InterestRate;
+        return loanInterest;
     }
 
     public void setInterestRate(double interestRate) {
-        InterestRate = interestRate;
+        loanInterest = interestRate;
     }
 
 }
