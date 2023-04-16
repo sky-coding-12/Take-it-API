@@ -20,6 +20,12 @@ public class bankController {
     public Bank saveBank(@RequestBody Bank bank){
         return bankRepo.save(bank);
     }
+
+    @PutMapping("updateBank")
+    public Bank updateBank(@RequestBody Bank bank){
+        return bankRepo.save(bank);
+    }
+
     @GetMapping("getBank")
     public List<Bank> getAllBank(){
         return bankRepo.findAll();
